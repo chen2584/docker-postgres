@@ -1,11 +1,11 @@
 # docker-postgres
 
-# USAGE
+### USAGE
 ```
 docker-compose up -d
 ```
 
-# Default Username and Password
+### Default User
 ```
 Username: postgres
 Password: P@ssw0rd
