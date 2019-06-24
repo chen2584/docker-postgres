@@ -1,10 +1,29 @@
-version: "3.1"
+version: "3.3"
 services:
-  my-postgres:
+  postgres-master:
     image: postgres:latest
     ports:
       - 5434:5432
     environment:
       - POSTGRES_PASSWORD=P@ssw0rd
     volumes:
-      - ./data:/var/lib/postgresql/data
+      - ./master/data:/var/lib/postgresql/data
+    networks:
+      default:
+        ipv4_address: 172.31.0.3
+  postgres-slave:
+    image: postgres:latest
+    ports:
+      - 5435:5432
+    environment:
+      - POSTGRES_PASSWORD=P@ssw0rd
+    volumes:
+      - ./slave/data:/var/lib/postgresql/data
+    networks:
+      default:
+        ipv4_address: 172.31.0.4
+networks:
+  default:
+    ipam:
+      config:
+        - subnet: 172.31.0.1/24
